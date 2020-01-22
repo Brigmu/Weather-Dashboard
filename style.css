@@ -13,6 +13,7 @@ body {
 
 .forecast-day {
     background-color: blue;
+    color: white;
 }
 
 #city-submit {
