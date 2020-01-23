@@ -9,28 +9,38 @@
 </head>
 <body> 
     <div class = 'container'>
-        <div class = 'wrapper-buttons'>
-            <h2>Search for a city:</h2>
-            <input type='text' id = 'city-input'>
-            <input type='submit' id = 'city-submit' value = 'search'>
-            <div class = 'saved-cities'></div>
-        </div>
-        <div class = 'wrapper-dashboard'>
-            <div class = 'city-forecast'>
-
+        <h1 id = 'title'>Weather Dashboard</h1>
+        <div class='wrapper'>
+            <div class='wrapper-buttons'>
+                <h2>Search for a city:</h2>
+                <input type='text' id='city-input'>
+                <input type='submit' id='city-submit' value='search'>
+                <div class='saved-cities'></div>
+                <button class='clear' id='clear-btn'>Clear Saved</button>
             </div>
-            <div class='wrapper-5-day'>
-                <div class='5-day-forecast'>
-                    <div class="forecast-day" id='day-1'></div>
-                    <div class="forecast-day" id='day-2'></div>
-                    <div class="forecast-day" id='day-3'></div>
-                    <div class="forecast-day" id='day-4'></div>
-                    <div class="forecast-day" id='day-5'></div>
+            <div class='wrapper-dashboard'>
+                <div class='todays-weather'>
+                    <h1>Todays Weather</h1>
+                    <div class='city-forecast'>
+                
+                    </div>
+                </div>
+                <hr>
+                <div class='wrapper-5-day'>
+                    <h1>5 Day Forecast</h1>
+                    <div class='five-day-forecast'>
+                        <div class="forecast-day" id='day-1'></div>
+                        <div class="forecast-day" id='day-2'></div>
+                        <div class="forecast-day" id='day-3'></div>
+                        <div class="forecast-day" id='day-4'></div>
+                        <div class="forecast-day" id='day-5'></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src = 'script.js'></script>
 </body>
 </html>
