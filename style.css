@@ -1,0 +1,110 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    display:flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+}
+
+.container {
+    width: 95%;
+    height: 100%;
+    border: 2px solid black;
+    padding: 2.5px;
+    background-color: lightgray;
+}
+
+.wrapper {
+    display: inline-flex;
+    width: 99%;
+    height: 95%;
+    padding: 2.5px;
+    background-color: white;
+}
+
+#title {
+    background-color: blue;
+    color: white;
+    font-size: 26px;
+    border: 2px solid black;
+    text-align: center;
+}
+
+.wrapper-buttons {
+    width: 35%;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.wrapper-dashboard {
+    width: 65%;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.todays-weather {
+    width: 100%;
+    height: 35%;
+}
+
+.wrapper-5-day {
+    width: 100%;
+    height: 65%;
+}
+
+.five-day-forecast{
+    width: 100%;
+    display: inline-flex;
+}
+
+.forecast-day {
+    background-color: blue;
+    color: white;
+    width: 17.5%;
+    height: 17.5%;
+    min-height: 75px;
+    padding: 5px;
+    margin: 5px;
+}
+
+#city-submit {
+    background-color: blue;
+    color: white;
+    margin-left: 5px;
+    padding: 5px;
+}
+
+.city {
+    width: 76%;
+    border: 0.5px solid black;
+    background-color: white;
+    font-size: 18px;
+    text-align: start;
+}
+
+#city-input {
+    width: 75%;
+}
+
+#clear-btn {
+    background-color: blue;
+    color: white;
+    margin: 5px;
+    padding: 5px;
+}
+
+p {
+    margin: 1%;
+}
+
+h2 {
+    margin: 1%;
+}
+
+h1 {
+    margin: 1%;
+}
