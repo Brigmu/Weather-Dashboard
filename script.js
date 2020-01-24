@@ -16,40 +16,58 @@ if (citiesArr == null) {
 renderCities();
 
 function getWeatherData(fullWeatherUrl, fullForecastUrl){
+
     fetch(fullWeatherUrl)
         .then(function (response) {
-            return response.json();
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+              } else {
+                //   console.log('this happened');
+                return response.json();
+              }
         })
         .then(function (json) {
             console.log(json);
+            // console.log('other thing happened');
             populateTodaysForecast(json);
+        })
+        .catch((error) => {
         });
+        
 
     fetch(fullForecastUrl)
         .then(function (response) {
-            return response.json();
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+              } else {
+                return response.json();
+              }
         })
         .then(function (json) {
             console.log(json);
             populate5DayForecast(json);
+        })
+        .catch((error) => {
+        
+            
         });
-
 }
 
 submitBtnEl.addEventListener('click', function(event){
     event.preventDefault();
     if (cityInputEl.value != '') {
+        
         let userCityName = cityInputEl.value.trim();
         const fullWeatherUrl = weatherUrl + userCityName + auth + dataType;
         const fullForecastUrl = forecastUrl + userCityName + auth + dataType;
-
+        
         let check = checkIfUsed(citiesArr, userCityName);
         if (!check) {
             citiesArr.push(userCityName);
         }
-
+        
         window.localStorage.setItem('cities', JSON.stringify(citiesArr));
-
+        
         getWeatherData(fullWeatherUrl, fullForecastUrl);
         renderCities();
     }
@@ -82,14 +100,18 @@ function renderCities() {
 function populateTodaysForecast(obj) {
     dashboardEl.innerHTML = '';
     
-    const cityName = document.createElement('h1');
-    cityName.textContent = obj.name;
-    dashboardEl.append(cityName);
-
     const todaysDate = document.createElement('h2');
     todaysDate.textContent = moment().format('l');
     dashboardEl.append(todaysDate);
     
+    const cityName = document.createElement('h1');
+    cityName.textContent = obj.name;
+    dashboardEl.append(cityName);
+
+    const cityIcon = document.createElement('img');
+    cityIcon.setAttribute('src', `http://openweathermap.org/img/wn/${obj.weather[0].icon}.png`);
+    dashboardEl.append(cityIcon);
+
     const cityTemp = document.createElement('p');
     cityTemp.textContent = `Temperature: ${obj.main.temp} °F`;
     dashboardEl.append(cityTemp);
@@ -115,13 +137,18 @@ function populate5DayForecast(obj) {
         console.log(j);
         const dayEl = document.querySelector(`#day-${k}`);
         dayEl.innerHTML = '';
+        dayEl.style.backgroundColor = 'blue';
 
         const nextDate = document.createElement('h4');
         nextDate.textContent = moment().add(k, 'days').format('l');
         dayEl.append(nextDate);
-
+        
+        const cityIcon = document.createElement('img');
+        cityIcon.setAttribute('src', `http://openweathermap.org/img/wn/${obj.list[j].weather[0].icon}.png`);
+        dayEl.append(cityIcon);
+        
         const cityTemp = document.createElement('p');
-        cityTemp.textContent = `Temperature: ${obj.list[j].main.temp} °F`;
+        cityTemp.textContent = `Temp: ${obj.list[j].main.temp} °F`;
         dayEl.append(cityTemp);
 
         const cityHumidity = document.createElement('p');
@@ -163,8 +190,8 @@ function getUVIndex(lon, lat) {
 function checkIfUsed(arr, cityCheck) {
     let used = false;
     for (let i = 0; i < arr.length; i++) {
-        let arrCity = arr[i];
-        if (arrCity == cityCheck) {
+        let arrCity = arr[i].toLowerCase();
+        if (arrCity == (cityCheck.toLowerCase())) {
             used = true;
         }
     }
