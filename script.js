@@ -22,13 +22,10 @@ function getWeatherData(fullWeatherUrl, fullForecastUrl){
             if (!response.ok) {
                 throw new Error('Network response was not ok');
               } else {
-                //   console.log('this happened');
                 return response.json();
               }
         })
         .then(function (json) {
-            console.log(json);
-            // console.log('other thing happened');
             populateTodaysForecast(json);
         })
         .catch((error) => {
@@ -44,7 +41,6 @@ function getWeatherData(fullWeatherUrl, fullForecastUrl){
               }
         })
         .then(function (json) {
-            console.log(json);
             populate5DayForecast(json);
         })
         .catch((error) => {
@@ -134,7 +130,6 @@ function populate5DayForecast(obj) {
     for (let i = 0; i < 5; i++) {
         let j  = i * 8;
         let k = i + 1;
-        console.log(j);
         const dayEl = document.querySelector(`#day-${k}`);
         dayEl.innerHTML = '';
         dayEl.style.backgroundColor = 'blue';
@@ -154,10 +149,6 @@ function populate5DayForecast(obj) {
         const cityHumidity = document.createElement('p');
         cityHumidity.textContent = `Humidity: ${obj.list[j].main.humidity}%`;
         dayEl.append(cityHumidity);
-
-        // const cityWindSpeed = document.createElement('p');
-        // cityWindSpeed.textContent = `Wind Speed: ${obj.list[j].wind.speed} MPH`;
-        // dayEl.append(cityWindSpeed);
     }
 }
 
@@ -180,7 +171,6 @@ function getUVIndex(lon, lat) {
             return response.json();
         })
             .then(function(json){
-                console.log(json);
                 const uvIndex = document.createElement('p');
                 uvIndex.textContent = `UV Index: ${json.value}`;
                 dashboardEl.append(uvIndex);
